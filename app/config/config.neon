@@ -1,0 +1,34 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+#
+parameters:
+#    mail:
+#          host: smtp.gmail.com
+#          username: ***user***
+#          password: ***pass****
+#          secure: ssl
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+#	subscribeCache: App\Services\SubscribeCache
+	subscribeRepository: App\Services\SubscribeRepository
+	dataCache: Nette\Caching\Cache(@cache.storage, 'dataCache')
+	notificator: App\Services\Notificator(@dataCache, @subscribeRepository, %mail.host%, %mail.username%, %mail.password%, %mail.secure%)
+
+extensions:
+    console: Kdyby\Console\DI\ConsoleExtension
+
+database:
+    dsn: 'sqlite:%appDir%/data/subscribers.db3'
+    conventions: static

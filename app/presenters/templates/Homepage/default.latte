@@ -1,0 +1,83 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+    <div class="container">
+        <div class="col-md-10 col-md-push-1">
+
+            <div class="header clearfix">
+                <h3 class="text-muted">JČU - Odběr jídelníčku</h3>
+                <hr>
+            </div>
+
+
+            <div class="jumbotron">
+                <h1>Odběru jídelníčku</h1>
+                <p class="lead">Chci být informován o novém jídelníčku v okamžiku, kdy se zveření.</p>
+                <form n:name="subscribeForm">
+                    <div class="errors" n:if="$form->hasErrors()">
+                        <div n:foreach="$form->errors as $error" class="alert alert-danger" role="alert">{$error}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="place">Menza</label>
+                        <select class="form-control" id="place" disabled>
+                            <option selected>Studentská</option>
+                            <option disabled>Teologická</option>
+                            <option disabled>K5</option>
+                            <option disabled>Minutková</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        {label email}
+                        <input n:name="email"  class="form-control" placeholder="Email">
+                    </div>
+                    <button n:name="subscribe" class="btn btn-lg btn-success">Přihlásit se</button>
+                </form>
+            </div>
+            {*
+                    <div class="row marketing">
+                        <div class="col-lg-6">
+                            <h4>Subheading</h4>
+                            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+                            <h4>Subheading</h4>
+                            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
+                                fermentum.</p>
+
+                            <h4>Subheading</h4>
+                            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h4>Subheading</h4>
+                            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+                            <h4>Subheading</h4>
+                            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
+                                fermentum.</p>
+
+                            <h4>Subheading</h4>
+                            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                        </div>
+                    </div>*}
+
+            <footer class="footer">
+                <hr>
+                <p>&copy; 2016 Pavel Máca, licence MIT</p>
+                <p><a href="https://github.com/pavelmaca/jcu-icanteen-subscribe">@pavelmaca/jcu-icanteen-subscribe</pa>
+                </p>
+            </footer>
+
+        </div>
+    </div> <!-- /container -->
+
+{/block}
+
+{block scripts}
+    {include parent}
+{/block}
+
+
+{block head}
+{/block}
