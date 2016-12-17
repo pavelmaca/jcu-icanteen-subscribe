@@ -64,7 +64,7 @@ class Notificator
             $mail->setFrom('iCanteen notifier <franta@example.com>')
                 ->addTo($row->email)
                 ->setSubject('Menza - dostupné speciality')
-                ->setBody($msg . "\n\n Pro odhlášení z odběru klikněte zde: https://jcu.assassik.cz/menza/unsubscribe?email=" . $row->email);
+                ->setBody($msg . "\n\n Pro odhlášení z odběru klikněte zde: https://menza-jcu.assassik.cz/unsubscribe?email=" . $row->email);
 
             $this->mailer->send($mail);
         }
