@@ -33,15 +33,22 @@ class Notificator
     }
 
 
+    /**
+     * Read current menu and send notification to all emails
+     */
     public function send()
     {
+        // last date on menu from cache
         $lastCheck = $this->cache->load('lastCheck');
 
+        // read current menu
         $reader = new MenuReader();
         $data = $reader->readCurrent();
 
         $msg = "Nové speciality, které je možné objednat:\n";
         $emtpy = true;
+
+        // add new meals to fromated message
         foreach ($data as $item) {
             if ($item[0]->format('U') > $lastCheck) {
                 $emtpy = false;
@@ -53,12 +60,14 @@ class Notificator
         if (!$emtpy) {
             $this->cache->save('lastCheck', $data[count($data) - 1][0]->format('U'));
         } else {
-            dump('nothing new');
+            // nothing new, just exit
             return;
         }
 
+        // testing mailer without smtp
         //$this->mailer = new SendmailMailer();
 
+        // send message for each user
         foreach ($this->repo->findAll() as $row) {
             $mail = new Message();
             $mail->setFrom('iCanteen notifier <franta@example.com>')
