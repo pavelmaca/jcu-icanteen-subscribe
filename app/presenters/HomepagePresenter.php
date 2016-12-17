@@ -18,19 +18,8 @@ class HomepagePresenter extends BasePresenter
     public function actionUnsubscribe($email)
     {
         $this->subscribeRepository->unsubscribe($email);
-        $this->flashMessage('Odběr pro ' . $email . ' byl odhlášen');
+        $this->flashMessage('Odběr pro ' . $email . ' byl zrušen.');
         $this->redirect('default');
-    }
-
-    public function renderDefault()
-    {
-
-        $notificator = $this->context->getService('notificator');
-        $notificator->send();
-
-        foreach ($this->subscribeRepository->findAll() as $row) {
-            dump($row->email);
-        }
     }
 
     public function createComponentSubscribeForm()
@@ -49,6 +38,7 @@ class HomepagePresenter extends BasePresenter
     {
         $values = $form->getValues();
         $this->subscribeRepository->subscribe($values['email']);
+        $this->flashMessage('Email ' . $values['email'] . ' byl přihlášen k odběru.');
     }
 
 }
