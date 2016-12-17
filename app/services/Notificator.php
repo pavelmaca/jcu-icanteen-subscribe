@@ -40,7 +40,7 @@ class Notificator
         $reader = new MenuReader();
         $data = $reader->readCurrent();
 
-        $msg = "Nové speciality, které je možné si objednat:\n";
+        $msg = "Nové speciality, které je možné objednat:\n";
         $emtpy = true;
         foreach ($data as $item) {
             if ($item[0]->format('U') > $lastCheck) {
@@ -54,6 +54,7 @@ class Notificator
             $this->cache->save('lastCheck', $data[count($data) - 1][0]->format('U'));
         } else {
             dump('nothing new');
+            return;
         }
 
         //$this->mailer = new SendmailMailer();
@@ -63,7 +64,7 @@ class Notificator
             $mail->setFrom('iCanteen notifier <franta@example.com>')
                 ->addTo($row->email)
                 ->setSubject('Menza - dostupné speciality')
-                ->setBody($msg . "\n\n Pro ohlášení z odběru klikněte zde: https://jcu.assassik.cz/menza/unsubscribe?email=" . $row->email);
+                ->setBody($msg . "\n\n Pro odhlášení z odběru klikněte zde: https://jcu.assassik.cz/menza/unsubscribe?email=" . $row->email);
 
             $this->mailer->send($mail);
         }

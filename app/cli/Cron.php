@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Cli\Update;
+namespace App\Cli;
 
-use App\Model\Facade\ClanUpdater;
+use App\Services\Notificator;
 use Nette\SmartObject;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,7 +15,7 @@ class Cron extends Command
 
     protected function configure()
     {
-        $this->setName('send:notification')
+        $this->setName('notification:send')
             ->setDescription('Send notifications');
     }
 
