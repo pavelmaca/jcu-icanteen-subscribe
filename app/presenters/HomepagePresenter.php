@@ -17,8 +17,12 @@ class HomepagePresenter extends BasePresenter
 
     public function actionUnsubscribe($email)
     {
+      /*  if(!Nette\Utils\Validators::isEmail($email)){
+            $this->flashMessage('Neplatný email.', 'alert-danger');
+            $this->redirect('default');
+        }*/
         $this->subscribeRepository->unsubscribe($email);
-        $this->flashMessage('Odběr pro ' . $email . ' byl zrušen.');
+        $this->flashMessage('Odběr pro ' . $email . ' byl zrušen.', 'alert-info');
         $this->redirect('default');
     }
 
@@ -37,8 +41,10 @@ class HomepagePresenter extends BasePresenter
     public function handleSubscription(Nette\Application\UI\Form $form)
     {
         $values = $form->getValues();
-        $this->subscribeRepository->subscribe($values['email']);
-        $this->flashMessage('Email ' . $values['email'] . ' byl přihlášen k odběru.');
+        if ($this->subscribeRepository->subscribe($values['email'])) {
+            $this->flashMessage('Email ' . $values['email'] . ' byl přihlášen k odběru.', 'alert-success');
+            $this->context->getService('notificator')->sendWelcome($values['email']);
+        }
     }
 
 }

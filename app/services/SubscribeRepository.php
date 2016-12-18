@@ -42,9 +42,10 @@ class SubscribeRepository
     public function subscribe($email)
     {
         if ($this->findAll()->where('email = ?', $email)->count() > 0) {
-            return;
+            return false;
         }
-        return $this->findAll()->insert(['email' => $email]);
+        $this->findAll()->insert(['email' => $email]);
+        return true;
     }
 
     public function unsubscribe($email)

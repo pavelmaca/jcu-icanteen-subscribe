@@ -15,6 +15,8 @@ use Nette\Utils\DateTime;
 
 class MenuReader
 {
+    use SmartObject;
+
     public function readCurrent()
     {
         // setup guzzle client

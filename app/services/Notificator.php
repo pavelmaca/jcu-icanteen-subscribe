@@ -12,9 +12,12 @@ namespace App\Services;
 use Nette\Caching\Cache;
 use Nette\Mail\Message;
 use Nette\Mail\SmtpMailer;
+use Nette\SmartObject;
 
 class Notificator
 {
+    use SmartObject;
+
     protected $cache;
     protected $repo;
     protected $mailer;
@@ -30,6 +33,18 @@ class Notificator
             'password' => $password,
             'secure' => $secure,
         ]);
+    }
+
+    public function sendWelcome($recipient)
+    {
+        $mail = new Message();
+        $mail->setFrom('iCanteen notifier <jcu@inseo.cz>')
+            ->addTo($recipient)
+            ->setSubject('Menza - přihášení k odběru')
+            ->setBody('Děkujeme za přihlášení k odběru jídelníčku mez JČU.\n V okamžiku zveřejnění nových specialit budete informován/a.\n\n
+                Pokud jste se pro odběr nepřihlil/a záměrně, odhlásit se můžete kliknutím na následující odkaz: https://menza-jcu.assassik.cz/unsubscribe?email=' . $recipient);
+
+        $this->mailer->send($mail);
     }
 
 
@@ -70,7 +85,7 @@ class Notificator
         // send message for each user
         foreach ($this->repo->findAll() as $row) {
             $mail = new Message();
-            $mail->setFrom('iCanteen notifier <franta@example.com>')
+            $mail->setFrom('iCanteen notifier <jcu@inseo.cz>')
                 ->addTo($row->email)
                 ->setSubject('Menza - dostupné speciality')
                 ->setBody($msg . "\n\n Pro odhlášení z odběru klikněte zde: https://menza-jcu.assassik.cz/unsubscribe?email=" . $row->email);
