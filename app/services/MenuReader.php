@@ -54,7 +54,7 @@ class MenuReader
             foreach ($tr->getElementsByTagName('td') as $td) {
                 /** @var $td \DOMElement */
 
-                $str = $td->textContent; //iconv('windows-1250', 'utf-8', $td->textContent);
+                $str = $td->textContent;
                 switch ($colCount) {
                     case 0:
                         // fisr col contains date
@@ -72,14 +72,14 @@ class MenuReader
                         }
                         break;
                     case 3:
-                        // name of a meail
+                        // name of a meal
                         $name = $str;
                         break;
                 }
                 $colCount++;
             }
 
-            // skip non interested mealls
+            // skip non interested meals
             if ($skip) {
                 continue;
             }
