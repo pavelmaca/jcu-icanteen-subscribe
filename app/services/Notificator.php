@@ -41,8 +41,8 @@ class Notificator
         $mail->setFrom('iCanteen notifier <jcu@inseo.cz>')
             ->addTo($recipient)
             ->setSubject('Menza - přihášení k odběru')
-            ->setBody('Děkujeme za přihlášení k odběru jídelníčku mez JČU.\n V okamžiku zveřejnění nových specialit budete informován/a.\n\n
-                Pokud jste se pro odběr nepřihlil/a záměrně, odhlásit se můžete kliknutím na následující odkaz: https://menza-jcu.assassik.cz/unsubscribe?email=' . $recipient);
+            ->setBody("Děkujeme za přihlášení k odběru jídelníčku mez JČU.\n V okamžiku zveřejnění nových specialit budete informován/a.\n
+            \nPokud jste se pro odběr nepřihlil/a záměrně, odhlásit se můžete kliknutím na následující odkaz: https://menza-jcu.assassik.cz/unsubscribe?email=" . $recipient);
 
         $this->mailer->send($mail);
     }
