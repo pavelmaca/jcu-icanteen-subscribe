@@ -13,27 +13,28 @@
             <div class="jumbotron">
                 <h1>Odběr jídelníčku</h1>
                 <p class="lead">Chci být informován o novém jídelníčku v okamžiku, kdy se zveřejní.</p>
+                <p>Prozatím je kdispozici pouze <b>studenská</b> pobočka a upozorněnní na <b>speciality</b>.</p>
                 <form n:name="subscribeForm">
                     <div class="errors" n:if="$form->hasErrors()">
                         <div n:foreach="$form->errors as $error" class="alert alert-danger" role="alert">{$error}</div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="place">Menza</label>
-                        <select class="form-control" id="place" disabled>
-                            <option selected>Studentská</option>
-                            <option disabled>Teologická</option>
-                            <option disabled>K5</option>
-                            <option disabled>Minutková</option>
-                        </select>
-                    </div>
+                    {* <div class="form-group">
+                         <label for="place">Menza</label>
+                         <select class="form-control" id="place" disabled>
+                             <option selected>Studentská</option>
+                             <option disabled>Teologická</option>
+                             <option disabled>K5</option>
+                             <option disabled>Minutková</option>
+                         </select>
+                     </div>
 
-                    <div class="form-group">
-                        <label for="place">Typ jídla</label>
-                        <select class="form-control" id="place" disabled>
-                            <option selected>Speciality</option>
-                        </select>
-                    </div>
+                     <div class="form-group">
+                         <label for="place">Typ jídla</label>
+                         <select class="form-control" id="place" disabled>
+                             <option selected>Speciality</option>
+                         </select>
+                     </div>*}
 
                     <div class="form-group">
                         {label email}
