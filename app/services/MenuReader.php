@@ -11,6 +11,7 @@ namespace App\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use Nette\SmartObject;
 use Nette\Utils\DateTime;
 
 class MenuReader
