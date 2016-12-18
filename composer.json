@@ -1,9 +1,9 @@
 {
 	"name": "assassik/jcu-icanteen-subscribe",
 	"description": "",
-	"homepage": "https://jcu.assassik.cz/jcu-icanteen-subscribe",
+	"homepage": "https://menza-jcu.assassik.cz/",
 	"type": "project",
-	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"license": ["MIT"],
 	"authors": [
 		{
 			"name": "Pavel Máca",
@@ -28,13 +28,11 @@
 		"latte/latte": "^2.3",
 		"tracy/tracy": "^2.4",
 		"dg/adminer-custom": "^1.6",
-		"doctrine/orm": "~2.5.0",
-		"doctrine/dbal": "~2.5.0",
-		"kdyby/doctrine": "^3.0",
 		"guzzlehttp/guzzle": "^6.1",
 		"pavelmaca/adminer-custom": "^1.1",
 		"composer/ca-bundle": "^1.0",
-		"roave/security-advisories": "dev-master"
+		"roave/security-advisories": "dev-master",
+		"kdyby/console": "^2.6"
 	},
 	"require-dev": {
 		"nette/tester": "^1.7.1"
