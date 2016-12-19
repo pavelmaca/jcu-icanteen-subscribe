@@ -1,0 +1,122 @@
+\documentclass[slidestop]{beamer}
+\mode<presentation> {
+\usetheme{Warsaw}
+\setbeamercovered{transparent}}
+\usepackage[czech]{babel}
+\usepackage{xltxtra}
+
+\begin{document}
+\title{Obhajoba semestrální práce}
+\author{Pavel Máca}
+\institute{Operační Systémy 2}
+\date{\today}
+%%%%%%%%%%
+\begin{frame}
+\titlepage
+\end{frame}
+%%%%%%%%%%
+\begin{frame}{Osnova}
+\tableofcontents
+\end{frame}
+%%%%%%%%%%
+\section{Vyprodané speciality}
+\begin{frame}
+\frametitle{Vyprodané speciality}
+\begin{figure}[h] % b, t, h
+\begin{center}
+\scalebox{0.4}{\includegraphics{nope.PNG}} 
+\\~\\
+\scalebox{0.4}{\includegraphics{mail.PNG}}
+\end{center}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%
+\section{Jak se přihlásit}
+\subsection{Přihlášení k odběru}
+\begin{frame}
+\frametitle{Jak se přihlásit}
+\begin{itemize}
+\item v prohlížeči otevřít \href{https://menza-jcu.assassik.cz}{menza-jcu.assassik.cz} \pause
+\begin{figure}[h] % b, t, h
+\begin{center}
+\scalebox{0.3}{\includegraphics{page.PNG}} 
+\end{center}
+\end{figure}
+\item přihlásit se k odběru a počkat na notifikaci
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%
+\subsection{Uvítací email}
+\begin{frame}
+\frametitle{Uvítací email}
+\vfill
+\begin{figure}[h] % b, t, h
+\begin{center}
+\scalebox{0.3}{\includegraphics{welcome.PNG}} 
+\end{center}
+\end{figure}
+\vfill
+\end{frame}
+%%%%%%%%%%%%%
+\section{Funkčnost}
+\subsection{Technologie}
+\begin{frame}
+\frametitle{Použitý jazyk a systém}
+\vfill
+\begin{itemize}
+
+\item Aplikce je napsána primárně v PHP za pomocí Nette\footnote{webový framework pro PHP}.
+
+\item PHP obstarává server Nginx\footnote{htpp server}
+
+\item O grafickou část se stará HTML a JS knihovna Boostrap\footnote{sada nástrojů na tvorbu webových aplikací}.
+
+\item Emaily odesílá pomocí SMTP\footnote{protokol pro odesílání emailů} server Google
+
+\item Celý stack běží na OS Debian
+
+\end{itemize}
+\vfill
+\end{frame}
+%%%%%%%%%%%%%
+\subsection{Zdroj dat}
+\begin{frame}
+\frametitle{Zdroj dat}
+\vfill
+Aktuální jídelníček se získáván z adresy \href{http://menza.jcu.cz/Studentska.html}{menza.jcu.cz/Studentska.html}
+\\~\\
+Pomocí externí knihovny je stažen  PHP je dále zpracován do podoby, ve které je možné s ním pracovat v php skriptu.
+
+\begin{alertblock}{PHP}
+Pracuje s HTML jako s DOM objektem.
+\end{alertblock}
+\vfill
+\end{frame}
+%%%%%%%%%
+\subsection{Ukázka kódu}
+\begin{frame}[containsverbatim]
+\frametitle{Ukázka kódu}
+\begin{figure}[h] % b, t, h
+\begin{center}
+\scalebox{0.55}{\includegraphics{code.PNG}} 
+\end{center}
+\end{figure}
+\end{frame}
+%%%%%%%%%
+\section{Závěr}
+\begin{frame}
+\frametitle{Závěr}
+\vfill
+Zdrojový kód je k dispozici na adrese:
+\href{https://github.com/pavelmaca/jcu-icanteen-subscribe}{https://github.com/pavelmaca/jcu-icanteen-subscribe} 
+
+ \begin{block}{Další funkce...}
+        \begin{itemize}
+        \item Denní notifikace na bezobjednávková jídla
+        \item Automatické objednávání
+        \item Další pobočky menzy
+        \end{itemize}
+        \end{block}
+\vfill
+\end{frame}
+\end{document}
