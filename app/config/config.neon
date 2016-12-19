@@ -36,3 +36,6 @@ database:
 console:
 	commands:
 	    - App\Cli\Cron
+	    - App\Cli\Subscribe
+	    - App\Cli\Unsubscribe
+	    - App\Cli\ListAll
