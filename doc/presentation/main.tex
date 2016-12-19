@@ -95,6 +95,24 @@ Změny jídelníčku jsou kontrolovány pomocí cronu.
 \vfill
 \end{frame}
 %%%%%%%%%
+\subsection{Konzole}
+\begin{frame}[containsverbatim]
+\frametitle{Konzole}
+Aplikaci lze spouštět a ovládat z příkazové řádky.
+\vfill
+\verb@php www/index.php <přikaz> [<argument>]@
+\vfill
+\begin{block}{Dostupné příkazy}
+  \begin{itemize}
+    \item \verb@subscribe <email>@ - Přidá email do seznamu odběratelů
+    \item \verb@unsubscribe <emai>@ - Odebere email ze seznamu odběratelů
+    \item \verb@notification-send@  - Odešle notifikace, pokud existuje nový jídelníček
+    \item \verb@subsciption-list@ - Vypíše seznam odběratelů
+  \end{itemize}
+\end{block}
+\vfill
+\end{frame}
+%%%%%%%%%
 \subsection{Ukázka kódu}
 \begin{frame}[containsverbatim]
 \frametitle{Ukázka kódu}
