@@ -6,7 +6,7 @@
 \usepackage{xltxtra}
 
 \begin{document}
-\title{Obhajoba semestrální práce}
+\title{Obhajoba semestrální práce UAI/755}
 \author{Pavel Máca}
 \institute{Operační Systémy 2}
 \date{\today}
@@ -79,17 +79,19 @@
 \vfill
 \end{frame}
 %%%%%%%%%%%%%
-\subsection{Zdroj dat}
+\subsection{Získání dat}
 \begin{frame}
-\frametitle{Zdroj dat}
+\frametitle{Získání dat}
 \vfill
-Aktuální jídelníček se získáván z adresy \href{http://menza.jcu.cz/Studentska.html}{menza.jcu.cz/Studentska.html}
+Aktuální jídelníček se získává z adresy \href{http://menza.jcu.cz/Studentska.html}{menza.jcu.cz/Studentska.html}
 \\~\\
-Pomocí externí knihovny je stažen  PHP je dále zpracován do podoby, ve které je možné s ním pracovat v php skriptu.
+Pomocí externí knihovny je stažen HTML kód, který je dále zpracován do podoby, ve které je možné s ním pracovat v PHP skriptu.
 
 \begin{alertblock}{PHP}
 Pracuje s HTML jako s DOM objektem.
 \end{alertblock}
+
+Změny jídelníčku jsou kontrolovány pomocí cronu.
 \vfill
 \end{frame}
 %%%%%%%%%
@@ -103,20 +105,21 @@ Pracuje s HTML jako s DOM objektem.
 \end{figure}
 \end{frame}
 %%%%%%%%%
-\section{Závěr}
+\section{Dotazy}
 \begin{frame}
-\frametitle{Závěr}
+\frametitle{Dotazy}
 \vfill
 Zdrojový kód je k dispozici na adrese:
 \href{https://github.com/pavelmaca/jcu-icanteen-subscribe}{https://github.com/pavelmaca/jcu-icanteen-subscribe} 
 
- \begin{block}{Další funkce...}
-        \begin{itemize}
-        \item Denní notifikace na bezobjednávková jídla
-        \item Automatické objednávání
-        \item Další pobočky menzy
-        \end{itemize}
-        \end{block}
+\begin{block}{Další funkce...}
+  \begin{itemize}
+  \item Denní notifikace na bezobjednávková jídla
+  \item Automatické objednávání
+  \item Další pobočky menzy
+  \end{itemize}
+\end{block}
 \vfill
+\tiny {Prezentace vytvořena pomocí \LaTeX}
 \end{frame}
 \end{document}
