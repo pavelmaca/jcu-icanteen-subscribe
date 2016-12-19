@@ -3,52 +3,85 @@
 \setdefaultlanguage{czech} 
 \usepackage[]{graphicx}
 \usepackage{listings}
+\usepackage{color}
 
-\title{Odbìr jídelníèkù z menzy JCU}
-\author{Pavel Máca}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeyellow}{rgb}{0.5,0.5,0.1}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codeyellow},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+
+\title{OdbÄ›r jÃ­delnÃ­ÄkÅ¯ z menzy JCU}
+\author{Pavel MÃ¡ca}
 
 \begin{document}
-\maketitle
+\begin{titlepage}
+	\centering
+	{\Huge OperaÄnÃ­ systÃ©my 2\par}
+	\vspace{1cm}
+	{\Large ZimnÃ­ semestr 2016/17\par}
+	\vspace{1.5cm}
+	{\huge\bfseries OdbÄ›r jÃ­delnÃ­ÄkÅ¯ z menzy JÄŒU\par}
+	\vspace{2cm}
+	{\Large\itshape Pavel MÃ¡ca\par}
+	\vfill
 
-\begin{center}
-\huge{Operaèní systémy 2}
 
-\large{Zimní semestr 2016/17}
-
-\end{center}
-
+	{\large \today\par}
+\end{titlepage}
 
 \pagebreak
 
-\section{Úvod}
-Úèelem projektu se vytvoøit emailové notifikace na novì vystavenı jídelní lístek v menze jihoèeské Univerzity.
+\section{Ãšvod}
+ÃšÄelem projektu se vytvoÅ™it emailovÃ© notifikace na novÄ› vystavenÃ½ jÃ­delnÃ­ lÃ­stek v menze jihoÄeskÃ© Univerzity.
 
-Uivatel má monost s pøihlásit k odbìru, kterı funguje na principu newsletteru. Na stránkách aplikace pouze vyplní svùj email. Pøi dalším vystavení jídelníèku ho bude aplikace informovat o vybranıch specialitách.
+UÅ¾ivatel mÃ¡ moÅ¾nost s pÅ™ihlÃ¡sit k odbÄ›ru, kterÃ½ funguje na principu newsletteru. Na strÃ¡nkÃ¡ch aplikace pouze vyplnÃ­ svÅ¯j email. PÅ™i dalÅ¡Ã­m vystavenÃ­ jÃ­delnÃ­Äku ho bude aplikace informovat o vybranÃ½ch specialitÃ¡ch.
 
-Mnohokrát se stává, e si chce nìkdo objednat specialitu pøes internetové stránky menzi, ale ta je ji vyprodaná. Díky vèasnému upozornìní lze vytvoøit objednávku vdy v èas.
+MnohokrÃ¡t se stÃ¡vÃ¡, Å¾e si chce nÄ›kdo objednat specialitu pÅ™es internetovÃ© strÃ¡nky menzi, ale ta je jiÅ¾ vyprodanÃ¡. DÃ­ky vÄasnÃ©mu upozornÄ›nÃ­ lze vytvoÅ™it objednÃ¡vku vÅ¾dy v Äas.
 
 
 \section{Metodika}
-Jako programovací jazyk bylo zvoleno PHP. Kód mùe bìet jak na Windows, tak OS Linux  a dalších, pro které existuje zkompilované PHP a pøípadnì nìjakı http server.
+Jako programovacÃ­ jazyk bylo zvoleno PHP. KÃ³d mÅ¯Å¾e bÄ›Å¾et jak na Windows, tak OS Linux  a dalÅ¡Ã­ch, pro kterÃ© existuje zkompilovanÃ© PHP a pÅ™Ã­padnÄ› nÄ›jakÃ½ http server.
 
 \section{Popis skriptu}
-Bìící aplikace je k dispozici na adrese https://menza-jcu.assassik.cz 
-Kontrola jídelníèku probíhá v hodinovıch intervalech.
+BÄ›Å¾Ã­cÃ­ aplikace je k dispozici na adrese https://menza-jcu.assassik.cz 
+Kontrola jÃ­delnÃ­Äku probÃ­hÃ¡ v hodinovÃ½ch intervalech.
 
-Samotná kontrola jídelníèku se spouští na serveru pomocí cronu. Zde se pouívá pøímé provádìní php scriptu pomoc pøíkazu „php“. Script naète aktuálnì zveøejnìnı jídelníèek, zpracuje HTML kód ve kterém se nachází data a názvy jídel.
+SamotnÃ¡ kontrola jÃ­delnÃ­Äku se spouÅ¡tÃ­ na serveru pomocÃ­ cronu. Zde se pouÅ¾Ã­vÃ¡ pÅ™Ã­mÃ© provÃ¡dÄ›nÃ­ php scriptu pomoc pÅ™Ã­kazu â€phpâ€œ. Script naÄte aktuÃ¡lnÄ› zveÅ™ejnÄ›nÃ½ jÃ­delnÃ­Äek, zpracuje HTML kÃ³d ve kterÃ©m se nachÃ¡zÃ­ data a nÃ¡zvy jÃ­del.
 
-Datum posledního jídla je uloeno do pamìti scriptu zvaná „cache“, podle které se rozpoznávají nová jídla pøi dalším spuštìní.
+Datum poslednÃ­ho jÃ­dla je uloÅ¾eno do pamÄ›ti scriptu zvanÃ¡ â€cacheâ€œ, podle kterÃ© se rozpoznÃ¡vajÃ­ novÃ¡ jÃ­dla pÅ™i dalÅ¡Ã­m spuÅ¡tÄ›nÃ­.
 
-V okamiku, kdy se uivatel pøihlásí je jeho email zapsán do SQLite databáze. Pøi nalezení nového jídla script automaticky pomocí SMTP protokolu rozesílá jednotlivé upozornìní na všechny emaily, která se nacházejí v databázi.
+V okamÅ¾iku, kdy se uÅ¾ivatel pÅ™ihlÃ¡sÃ­ je jeho email zapsÃ¡n do SQLite databÃ¡ze. PÅ™i nalezenÃ­ novÃ©ho jÃ­dla script automaticky pomocÃ­ SMTP protokolu rozesÃ­lÃ¡ jednotlivÃ© upozornÄ›nÃ­ na vÅ¡echny emaily, kterÃ¡ se nachÃ¡zejÃ­ v databÃ¡zi.
 
-Pokud si uivatel nepøeje dostávat další upozornìní, nachází se v emailu odkaz pro odhlášení z odbìru.
+Pokud si uÅ¾ivatel nepÅ™eje dostÃ¡vat dalÅ¡Ã­ upozornÄ›nÃ­, nachÃ¡zÃ­ se v emailu odkaz pro odhlÃ¡Å¡enÃ­ z odbÄ›ru.
 
-Jeliko je jídelníèek zveøejnován tøetí stranou, nelze zajistit správnı chod aplikace po delší dobu, pokud tøetí strana nìjak zmìní datovou strukturu jídelníèku.
+JelikoÅ¾ je jÃ­delnÃ­Äek zveÅ™ejnovÃ¡n tÅ™etÃ­ stranou, nelze zajistit sprÃ¡vnÃ½ chod aplikace po delÅ¡Ã­ dobu, pokud tÅ™etÃ­ strana nÄ›jak zmÄ›nÃ­ datovou strukturu jÃ­delnÃ­Äku.
 
-\section{Zdrojovı kód}
-Zdrojová kód je k dispozici na adrese https://github.com/pavelmaca/jcu-icanteen-subscribe 
+\section{ZdrojovÃ½ kÃ³d}
+ZdrojovÃ¡ kÃ³d je k dispozici na adrese https://github.com/pavelmaca/jcu-icanteen-subscribe 
 
-Vybraná èást kódu:
+VybranÃ¡ ÄÃ¡st kÃ³du:
 \lstset{language=PHP} 
 \begin{lstlisting}
 $str = $td->textContent
@@ -78,7 +111,8 @@ switch ($colCount) {
 \end{lstlisting}
 
 
-\section{Závìr}
-Aplikace momentálnì podporuje pouze upozornìní na speciality z jedné stravovny. Do budoucna by se mohla rozšíøit o další funkce, jako vıbìr typù jídel a další provozovny.
+
+\section{ZÃ¡vÄ›r}
+Aplikace momentÃ¡lnÄ› podporuje pouze upozornÄ›nÃ­ na speciality z jednÃ© stravovny. Do budoucna by se mohla rozÅ¡Ã­Å™it o dalÅ¡Ã­ funkce, jako vÃ½bÄ›r typÅ¯ jÃ­del a dalÅ¡Ã­ provozovny.
 
 \end{document}
