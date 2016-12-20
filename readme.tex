@@ -67,6 +67,20 @@ Mnohokrát se stává, že si chce někdo objednat specialitu přes internetové
 Jako programovací jazyk bylo zvoleno PHP. Kód může běžet jak na Windows, tak OS Linux  a dalších OS, pro které existuje zkompilované PHP.
 
 \section{Popis skriptu}
+\subsection{Konfigurace}
+Před spuštěním je potřeba vytvořit soubor s konfigurací
+\verb@config.local.neon@
+
+Do něj vložte konfiguraci SMTP připojení pro server odesílající poštu.
+\begin{lstlisting}
+parameters:
+    mail:
+          host: smtp.gmail.com
+          username: ***user***
+          password: ***pass****
+          secure: ssl
+\end{lstlisting}
+
 \subsection{Konzole}
 Aplikaci lze spustit pouze z příkazového řádku. Před jejím spuštěním je zapotřebí doinstalovat veškeré závislosti pomocí programu Composer\footnote{https://getcomposer.org - balíčkovací systém PHP}.
 
