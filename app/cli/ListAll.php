@@ -18,7 +18,7 @@ class ListAll extends Command
 
     protected function configure()
     {
-        $this->setName('subsciption-list')
+        $this->setName('subscription-list')
             ->setDescription('List all subscription');
     }
 
