@@ -2,7 +2,6 @@
 
 namespace App\Presenters;
 
-use App\Model;
 use App\Services\SubscribeRepository;
 use Nette;
 
@@ -17,10 +16,10 @@ class HomepagePresenter extends BasePresenter
 
     public function actionUnsubscribe($email)
     {
-      /*  if(!Nette\Utils\Validators::isEmail($email)){
-            $this->flashMessage('Neplatný email.', 'alert-danger');
-            $this->redirect('default');
-        }*/
+        /*  if(!Nette\Utils\Validators::isEmail($email)){
+              $this->flashMessage('Neplatný email.', 'alert-danger');
+              $this->redirect('default');
+          }*/
         $this->subscribeRepository->unsubscribe($email);
         $this->flashMessage('Odběr pro ' . $email . ' byl zrušen.', 'alert-info');
         $this->redirect('default');

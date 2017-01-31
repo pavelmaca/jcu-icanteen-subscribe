@@ -35,7 +35,8 @@
 		"kdyby/console": "^2.6"
 	},
 	"require-dev": {
-		"nette/tester": "^1.7.1"
+		"nette/tester": "^1.7.1",
+		"nextras/mail-panel": "^2.3"
 	},
 	"minimum-stability": "stable"
 }

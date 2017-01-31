@@ -2,13 +2,6 @@
 # WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
 # https://nette.org/security-warning
 #
-parameters:
-#    mail:
-#          host: smtp.gmail.com
-#          username: ***user***
-#          password: ***pass****
-#          secure: ssl
-
 application:
 	errorPresenter: Error
 	mapping:
@@ -24,7 +17,7 @@ services:
 #	subscribeCache: App\Services\SubscribeCache
 	subscribeRepository: App\Services\SubscribeRepository
 	dataCache: Nette\Caching\Cache(@cache.storage, 'dataCache')
-	notificator: App\Services\Notificator(@dataCache, @subscribeRepository, %mail.host%, %mail.username%, %mail.password%, %mail.secure%)
+	notificator: App\Services\Notificator(@dataCache, @subscribeRepository, @nette.mailer)
 
 extensions:
     console: Kdyby\Console\DI\ConsoleExtension

@@ -10,9 +10,8 @@ namespace App\Services;
 
 
 use Nette\Caching\Cache;
+use Nette\Mail\IMailer;
 use Nette\Mail\Message;
-use Nette\Mail\SendmailMailer;
-use Nette\Mail\SmtpMailer;
 use Nette\SmartObject;
 
 class Notificator
@@ -23,17 +22,11 @@ class Notificator
     protected $repo;
     protected $mailer;
 
-    public function __construct(Cache $cache, SubscribeRepository $repo, $host, $username, $password, $secure)
+    public function __construct(Cache $cache, SubscribeRepository $repo, IMailer $mailer)
     {
         $this->cache = $cache;
         $this->repo = $repo;
-
-        $this->mailer = new SmtpMailer([
-            'host' => $host,
-            'username' => $username,
-            'password' => $password,
-            'secure' => $secure,
-        ]);
+        $this->mailer = $mailer;
     }
 
     public function sendWelcome($recipient)
@@ -80,9 +73,6 @@ class Notificator
             // nothing new, just exit
             return;
         }
-
-        // testing mailer without smtp
-        //$this->mailer = new SendmailMailer();
 
         // send message for each user
         foreach ($this->repo->findAll() as $row) {
