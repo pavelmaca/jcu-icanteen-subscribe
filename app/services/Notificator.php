@@ -28,7 +28,7 @@ class Notificator
     protected $templateDir;
     protected $webLink;
 
-    public function __construct(Cache $cache, SubscribeRepository $repo, IMailer $mailer, $templateDir, $webLink)
+    public function __construct(Cache $cache, SubscribeRepository $repo, IMailer $mailer, $templateDir, $tempDir, $webLink)
     {
         $this->cache = $cache;
         $this->repo = $repo;
@@ -37,6 +37,7 @@ class Notificator
         $this->webLink = $webLink;
 
         $this->latte = new Engine();
+        $this->latte->setTempDirectory($tempDir . '/mailTemp');
 
         $this->latte->addFilter('czechDate', function (\DateTime $date, $format) {
             static $names = ['', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'];
