@@ -17,7 +17,7 @@ services:
 #	subscribeCache: App\Services\SubscribeCache
 	subscribeRepository: App\Services\SubscribeRepository
 	dataCache: Nette\Caching\Cache(@cache.storage, 'dataCache')
-	notificator: App\Services\Notificator(@dataCache, @subscribeRepository, @nette.mailer)
+	notificator: App\Services\Notificator(@dataCache, @subscribeRepository, @nette.mailer, %appDir%/mails, %webLink% )
 
 extensions:
     console: Kdyby\Console\DI\ConsoleExtension

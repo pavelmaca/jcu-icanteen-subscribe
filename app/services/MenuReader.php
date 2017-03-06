@@ -9,6 +9,8 @@
 namespace App\Services;
 
 
+use App\Model\Meal;
+use App\Model\MealType;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Nette\SmartObject;
@@ -18,7 +20,20 @@ class MenuReader
 {
     use SmartObject;
 
-    public function readCurrent()
+    /**
+     * @return Meal[]
+     */
+    public function getCurrentMealList()
+    {
+        $html = $this->readPage('Studentska.html');
+        if (!$html) {
+            return [];
+        }
+
+        return $this->parseHtml($html);
+    }
+
+    protected function readPage($pageName)
     {
         // setup guzzle client
         $httpClient = new Client([
@@ -28,93 +43,45 @@ class MenuReader
         ]);
 
         // create request
-        $result = $httpClient->get('Studentska.html');
+        $result = $httpClient->get($pageName);
 
         if ($result->getStatusCode() !== 200) {
             return false;
         }
 
-        // rpocess html as dom object
-        $html = $result->getBody()->getContents();
-        $DOM = new \DOMDocument();
-        $DOM->loadHTML($html);
+        return $result->getBody()->getContents();
+    }
 
-        $first = true; // first row indicator
-        $date = false; // current date in row
-        $data = [];
+    public function parseHtml($html)
+    {
+        // fix encoding to UTF-8
+        $fixedHtml = iconv('WINDOWS-1250', 'UTF-8', $html);
 
-        $items = $DOM->getElementsByTagName('tr');
-        foreach ($items as $tr) {
-            /** @var $tr \DOMElement */
+        // split to lines
+        $lines = preg_split('~\n\r\n~', $fixedHtml);
 
-            if ($first) {
-                $first = false;
+        $meals = [];
+        $currentDate = null;
+        foreach ($lines as $line) {
+            if (!preg_match('~<TR><TD>(?P<col1>[^<]+)<\/TD><TD>(?P<col2>[^<]+)<\/TD><TD>(?P<col3>[^<]+)<\/TD><TD>(?P<col4>[^<]+)<\/TD><\/TR>~', $line, $cols)) {
                 continue;
             }
 
-            $colCount = 0;
-            $skip = false;
-            foreach ($tr->getElementsByTagName('td') as $td) {
-                /** @var $td \DOMElement */
-
-                $str = $td->textContent;
-                switch ($colCount) {
-                    case 0:
-                        // fisr col contains date
-                        if (preg_match('~^([0-9]{1,2}\.){2}[0-9]{4}$~', $str)) {
-                            $date = DateTime::createFromFormat('j.n.Y H:i:s', $str . ' 00:00:00');
-                        }
-                        break;
-                    case 1:
-                        // type of meal
-                        $str = self::fixEncoding($str);
-                        if (preg_match('~^(Specialita) [0-9]~', $str)) {
-                            $type = $str;
-                        } else {
-                            $skip = true;
-                        }
-                        break;
-                    case 3:
-                        // name of a meal
-                        $name = $str;
-                        break;
-                }
-                $colCount++;
-            }
-
-            // skip non interested meals
-            if ($skip) {
+            if($cols['col4'] == '&nbsp;') {
                 continue;
             }
 
-            $data[] = [$date, $type, self::fixEncoding($name)];
+            if (preg_match('~(?P<date>[0-9]{1,2}\.[0-9]{1,2}.[0-9]{4})~', $cols['col1'], $dateResult)) {
+                $currentDate = DateTime::createFromFormat('j.n.Y H:i:s', $dateResult['date'] . ' 00:00:00');
+            }
+
+            if ($currentDate == null) {
+                continue;
+            }
+            
+            $meals[] = new Meal($cols['col4'], $currentDate, MealType::getFromString($cols['col2']));
         }
 
-        return $data;
+        return $meals;
     }
-
-    /**
-     * Fix some encoding problems with data
-     * @param $str
-     * @return mixed
-     */
-    protected static function fixEncoding($str)
-    {
-        $str = mb_convert_encoding($str, 'utf-8', 'cp1250');
-
-        $replace = [
-            'ì' => 'ě',
-            'è' => 'č',
-            "Ã" => 'í',
-            "ø" => 'ř',
-            "é" => 'á',
-            "\xc3\xa8" => 'ě',
-            "\xc4\x9b" => 'ě',
-            "\xc4\x8d" => 'č',
-            "\xc3\xa1" => 'é'
-        ];
-
-        return str_replace(array_keys($replace), array_values($replace), $str);
-    }
-
 }

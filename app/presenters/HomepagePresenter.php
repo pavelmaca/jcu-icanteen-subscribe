@@ -2,6 +2,7 @@
 
 namespace App\Presenters;
 
+use App\Services\Notificator;
 use App\Services\SubscribeRepository;
 use Nette;
 
@@ -13,6 +14,13 @@ class HomepagePresenter extends BasePresenter
      * @var SubscribeRepository
      */
     public $subscribeRepository;
+
+    public function actionDefault()
+    {
+        /** @var Notificator $notificatro */
+        // $notificatro = $this->context->getByType(Notificator::class);
+        // $notificatro->send();
+    }
 
     public function actionUnsubscribe($email)
     {
