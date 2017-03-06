@@ -1,25 +1,30 @@
 {layout '@layout.latte'}
 {block content}
-<header>
-    <h1>Menza JCU</h1>
-    <h2>Objednat speciality</h2>
+<header style="padding: 10px 5px;text-align: center;font-weight: bold;">
+    <h1 style="font-weight: 500;line-height: 1.1;font-size: 36px;">Menza JCU</h1>
+    <h2 style="font-weight: 500;line-height: 1.1;font-size: 30px;">Objednat speciality</h2>
 </header>
-<section>
-    <p class="center"><a class="btn btn-green" href="{$icanteenLink}">Objednat</a></p>
+<div
+        style="background-color: white;border: 1px solid #e5e9ec;border-bottom-width: 2px;padding: 15px 15px 15px 35px;">
+    <p class="center" style="text-align: center;"><a class="btn btn-green" href="{$icanteenLink}"
+                                                     style="color: #fff;text-decoration: none;display: inline-block;border-radius: 4px;border-width: 1px;padding: 6px 24px;vertical-align: middle;background-color: #5cb85c;border-color: #4cae4c;">Objednat</a>
+    </p>
     <p>Týden <b>20.3. - 27.3.</b></p>
-    <table class="meals">
+    <table class="meals" style="border-collapse: collapse;border-spacing: 0;">
         <thead>
         <tr>
-            <th>Den</th>
-            <th>Pokrm</th>
+            <th style="text-align: center;border-bottom: 2px solid lightgray;">Den</th>
+            <th style="text-align: center;border-bottom: 2px solid lightgray;">Pokrm</th>
         </tr>
         </thead>
         <tbody>
         <tr n:foreach="$meals as $meal">
-            <td>{$meal->getDate()|czechDate:'j.n.'}</td>
-            <td>{$meal->getName()}</td>
+            <td style="padding: 10px 7px;border-bottom: 1px solid lightgray;">{$meal->getDate()|czechDate:'j.n.'}</td>
+            <td style="padding: 10px 7px;border-bottom: 1px solid lightgray;">{$meal->getName()}</td>
         </tr>
         </tbody>
     </table>
-    <p class="center"><a class="btn btn-green" href="{$icanteenLink}">Objednat</a></p>
-</section>
+    <p class="center" style="text-align: center;"><a class="btn btn-green" href="{$icanteenLink}"
+                                                     style="color: #fff;text-decoration: none;display: inline-block;border-radius: 4px;border-width: 1px;padding: 6px 24px;vertical-align: middle;background-color: #5cb85c;border-color: #4cae4c;">Objednat</a>
+    </p>
+</div>
