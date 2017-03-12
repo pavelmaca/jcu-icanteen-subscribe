@@ -20,7 +20,7 @@ class Meal
     private $date;
 
     /**
-     * @var MealType
+     * @var int|MealType
      */
     private $type;
 
@@ -28,7 +28,7 @@ class Meal
      * Meal constructor.
      * @param string $name
      * @param \DateTime $date
-     * @param MealType $type
+     * @param int|MealType $type
      */
     public function __construct(string $name, \DateTime $date, int $type)
     {

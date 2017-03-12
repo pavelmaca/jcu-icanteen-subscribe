@@ -32,13 +32,19 @@ class SubscribeRepository
         return $this->database->table('subscribers')->setPrimarySequence('email');
     }
 
-    /** @return Nette\Database\Table\ActiveRow */
+    /**
+     * @param $mail
+     * @return Nette\Database\Table\IRow
+     */
     public function findByMail($mail)
     {
         return $this->findAll()->get($mail);
     }
 
-    /** @return Nette\Database\Table\ActiveRow */
+    /**
+     * @param $email
+     * @return bool
+     */
     public function subscribe($email)
     {
         if ($this->findAll()->where('email = ?', $email)->count() > 0) {
