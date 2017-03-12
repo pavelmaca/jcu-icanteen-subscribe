@@ -36,7 +36,9 @@
 	},
 	"require-dev": {
 		"nette/tester": "^1.7.1",
-		"nextras/mail-panel": "^2.3"
+		"nextras/mail-panel": "^2.3",
+		"phpstan/phpstan": "^0.6.4",
+		"phpstan/phpstan-nette": "^0.6.3"
 	},
 	"minimum-stability": "stable"
 }
